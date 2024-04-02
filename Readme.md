@@ -1,2 +1,3 @@
 # Focus Buddy
-## Swift Playground 
+<hr >
+Timer application 
