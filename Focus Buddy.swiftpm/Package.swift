@@ -8,18 +8,18 @@ import PackageDescription
 import AppleProductTypes
 
 let package = Package(
-    name: "My App",
+    name: "Midnight",
     platforms: [
         .iOS("17.2")
     ],
     products: [
         .iOSApplication(
-            name: "My App",
+            name: "Midnight",
             targets: ["AppModule"],
             displayVersion: "1.0",
             bundleVersion: "1",
-            appIcon: .placeholder(icon: .lightningBolt),
-            accentColor: .presetColor(.blue),
+            appIcon: .asset("AppIcon"),
+            accentColor: .presetColor(.indigo),
             supportedDeviceFamilies: [
                 .pad,
                 .phone
