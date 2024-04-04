@@ -7,7 +7,7 @@ enum TabbedItems: Int, CaseIterable{
     var title: String{
         switch self {
         case .home:
-            return "Home."
+            return "Home ....."
         case .chart:
             return "Chart"
         case .setting:
