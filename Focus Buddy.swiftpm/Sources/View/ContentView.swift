@@ -4,32 +4,41 @@ struct ContentView: View {
     @State private var selectedTab = 0
     
     var body: some View {
-        
-        ZStack(alignment: .bottom, content: {
+        VStack {
     
-            TabView(selection: $selectedTab) {
-                HomeView().tag(0)
-                ChartView().tag(1)
-                SettingsView().tag(2)
-            }
-            ZStack{
-                HStack{
-                    ForEach((TabbedItems.allCases), id: \.self){ item in
-                        Button{
-                            selectedTab = item.rawValue
-                        } label: {
-                            CustomTabItem(imageName: item.iconName, title: item.title, isActive: (selectedTab == item.rawValue))
+        
+            
+                if selectedTab == 0 {
+                    HomeView()
+                } else if selectedTab == 1 {
+                    ChartView()
+                } else if selectedTab == 2 {
+                    SettingsView()
+                }
+            
+            
+          
+            
+            ZStack(alignment: .bottom, content: {
+                ZStack{
+                    HStack{
+                        ForEach((TabbedItems.allCases), id: \.self){ item in
+                            Button{
+                                selectedTab = item.rawValue
+                            } label: {
+                                CustomTabItem(imageName: item.iconName, title: item.title, isActive: (selectedTab == item.rawValue))
+                            }
                         }
                     }
+                    .padding()
                 }
-                .padding()
-            }
-            .frame(width:200, height: 70)
-            .background(AppColor.DarkHover)
-            .cornerRadius(35)
-            .padding(.horizontal, 10)
-           
-        })
+                .frame(width:200, height: 70)
+                .background(AppColor.DarkHover)
+                .cornerRadius(35)
+                .padding(.horizontal, 10)
+                
+            })
+        }
     }
 }
 
