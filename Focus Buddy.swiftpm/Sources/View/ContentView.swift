@@ -1,59 +1,18 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var selectedTab = 0
     
     var body: some View {
         VStack {
-    
-        
-            
-                if selectedTab == 0 {
-                    HomeView()
-                } else if selectedTab == 1 {
-                    ChartView()
-                } else if selectedTab == 2 {
-                    SettingsView()
-                }
-            
-            
-          
-            
-            ZStack(alignment: .bottom, content: {
-                ZStack{
-                    HStack{
-                        ForEach((TabbedItems.allCases), id: \.self){ item in
-                            Button{
-                                selectedTab = item.rawValue
-                            } label: {
-                                CustomTabItem(imageName: item.iconName, title: item.title, isActive: (selectedTab == item.rawValue))
-                            }
-                        }
-                    }
-                    .padding()
-                }
-                .frame(width:200, height: 70)
-                .background(AppColor.DarkHover)
-                .cornerRadius(35)
-                .padding(.horizontal, 10)
-                
-            })
+            HomeScreen()
         }
     }
 }
 
 
-extension ContentView{
-    func CustomTabItem(imageName: String, title: String, isActive: Bool) -> some View{
-        HStack(spacing: 10){
-            Spacer()
-            Image("\(isActive ? imageName + "-focus" : imageName)")
-                .resizable()
-                .frame(width: 30, height: 30)
-            Spacer()
-        }
-        .frame(width: isActive ? .infinity : 60, height: 60)
-        .background(isActive ? AppColor.LightActive : .clear)
-        .cornerRadius(100)
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
     }
 }
