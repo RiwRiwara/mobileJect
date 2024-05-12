@@ -1,10 +1,3 @@
-//
-//  HomeScreen.swift
-//  Furniture_app
-//
-//  Created by Abu Anwar MD Abdullah on 14/2/21.
-//
-
 import SwiftUI
 
 struct HomeScreen: View {
