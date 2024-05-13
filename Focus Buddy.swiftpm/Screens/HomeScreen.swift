@@ -5,25 +5,30 @@ import SwiftUI
 struct HomeScreen: View {
     @State private var search: String = ""
     @State private var selectedIndex: Int = 1
-    @State private var message: String = ""
+    @State private var isFetchingData = true
+    @State private var errorMessage = ""
     
     private let categories = ["All", "Bracelet", "Necklace", "Earring", "Glasses"]
     var body: some View {
-        NavigationView {
-            VStack {
-                if message.isEmpty {
-                    Text("Loading...")
-                        .padding()
-                        .onAppear {
-                            fetchData()
-                        }
-                } else if message == "Server unavailable" {
-                    Text(message)
-                        .padding()
-                } else {
-                    
+        if isFetchingData {
+            Text("Loading...")
+                .padding()
+                .onAppear {
+                    fetchData()
                 }
-            }
+                .onReceive(fetchPublisher) { result in
+                    switch result {
+                    case .success(let data):
+                        isFetchingData = false
+                    case .failure(let error):
+                        errorMessage = error.localizedDescription
+                    }
+                }
+        } else if !errorMessage.isEmpty {
+            Text(errorMessage)
+                .padding()
+        } else {
+        NavigationView {
               ZStack {
                 Color(#colorLiteral(red: 0.937254902, green: 0.937254902, blue: 0.937254902, alpha: 1))
                     .ignoresSafeArea()
@@ -91,15 +96,17 @@ struct HomeScreen: View {
                 }
             }
         }
-//        .navigationBarTitle("") //this must be empty
-//        .navigationBarHidden(true)
-//        .navigationBarBackButtonHidden(true)
+    }
+
+
     }
     
 
     func fetchData() {
         guard let url = URL(string: Endpoint.baseURL + Endpoint.Path.testApi) else {
+            self.errorMessage = "Invalid URL"
             print("Invalid URL")
+            self.isFetchingData = false
             return
         }
         
@@ -107,12 +114,13 @@ struct HomeScreen: View {
             switch result {
             case .success(let decodedData):
                 DispatchQueue.main.async {
-                    // self.message = decodedData.message
+                    self.isFetchingData = false
                 }
             case .failure(let error):
                 print("Error: \(error.localizedDescription)")
                 DispatchQueue.main.async {
-                    self.message = "Server unavailable"
+                    self.errorMessage = "Server unavailable"
+                    self.isFetchingData = false
                 }
             }
         }
