@@ -17,6 +17,7 @@ struct HomeScreen: View {
 
     var body: some View {
         if isFetchingData {
+            Image("Loading")
             Text("Loading...")
                 .padding()
                 .onAppear {
