@@ -7,6 +7,7 @@ struct DetailScreen: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     let item: Item
     @EnvironmentObject var cartItems: CartItems
+    @State private var showAddedToCartPopup = false 
 
     var body: some View {
         ZStack {
@@ -59,6 +60,11 @@ struct DetailScreen: View {
                     .background(Color.white)
                     .cornerRadius(10.0)
             }
+               .alert(isPresented: $showAddedToCartPopup) {
+                    Alert(title: Text("Item Added to Cart"),
+                          message: Text("\nThis items has been added to your cart."),
+                          dismissButton: .default(Text("OK")))
+                }
                 
             }
             .padding()
