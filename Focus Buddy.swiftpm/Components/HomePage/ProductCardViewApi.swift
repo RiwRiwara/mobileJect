@@ -24,7 +24,7 @@ struct ProductCardViewApi: View {
                     EmptyView()
                 }
             }
-            Text(item.name).font(.title3).fontWeight(.bold)
+            Text(item.name).font(.subheadline).fontWeight(.bold)
             
             HStack (spacing: 2) {
                 ForEach(0 ..< 5) { item in
@@ -32,7 +32,7 @@ struct ProductCardViewApi: View {
                 }
                 Spacer()
                 Text(item.sale)
-                    .font(.title3)
+                    .font(.body)
                     .fontWeight(.bold)
             }
         }
