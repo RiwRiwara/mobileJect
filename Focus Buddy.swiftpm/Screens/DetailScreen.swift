@@ -22,8 +22,8 @@ struct DetailScreen: View {
                     case .failure:
                             Image(systemName: "photo")
                                 .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: size, height: size)
+                                .aspectRatio(1,contentMode: .fit)
+                                .edgesIgnoringSafeArea(.top)
                     @unknown default:
                             EmptyView()
                         }
