@@ -56,9 +56,12 @@ struct HomeScreen: View {
                             //     .padding()
                             // }
 
-                            Text("Necklace")
+                            Text("    Necklace")
                                 .font(.title3)
                                 .fontWeight(.bold)
+                                .padding(.top, 20)
+                                .padding(.horizontal, 10)
+                                .padding(.bottom, -15)
 
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack (spacing: 0) {
@@ -69,9 +72,12 @@ struct HomeScreen: View {
                                 }
                             } // ScrollView
                             
-                            Text("Earring")
+                            Text("    Earring")
                                 .font(.title3)
                                 .fontWeight(.bold)
+                                .padding(.top, 20)
+                                .padding(.horizontal, 10)
+                                .padding(.bottom, -15)
 
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack (spacing: 0) {
@@ -82,9 +88,12 @@ struct HomeScreen: View {
                                 }
                             }// ScrollView
                             
-                            Text("Bracelet")
+                            Text("    Bracelet")
                                 .font(.title3)
                                 .fontWeight(.bold)
+                                .padding(.top, 20)
+                                .padding(.horizontal, 10)
+                                .padding(.bottom, -15)
 
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack (spacing: 0) {
@@ -95,9 +104,12 @@ struct HomeScreen: View {
                                 }
                             }// ScrollView
                             
-                            Text("Glasses")
+                            Text("    Glasses")
                                 .font(.title3)
                                 .fontWeight(.bold)
+                                .padding(.top, 20)
+                                .padding(.horizontal, 10)
+                                .padding(.bottom, -15)
 
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack (spacing: 0) {
@@ -110,9 +122,13 @@ struct HomeScreen: View {
 
                             
                             // Old code
-                            Text("Earring")
+                            Text("    Earring")
                                 .font(.title3)
                                 .fontWeight(.bold)
+                                .padding(.top, 20)
+                                .padding(.horizontal, 10)
+                                .padding(.bottom, -15)
+
                             
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack (spacing: 0) {
