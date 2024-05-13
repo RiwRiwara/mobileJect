@@ -59,9 +59,7 @@ struct HomeScreen: View {
                             Text("    Necklace")
                                 .font(.title3)
                                 .fontWeight(.bold)
-                                .padding(.top, 20)
-                                .padding(.horizontal, 10)
-                                .padding(.bottom, -15)
+
 
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack (spacing: 0) {
@@ -75,9 +73,6 @@ struct HomeScreen: View {
                             Text("    Earring")
                                 .font(.title3)
                                 .fontWeight(.bold)
-                                .padding(.top, 20)
-                                .padding(.horizontal, 10)
-                                .padding(.bottom, -15)
 
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack (spacing: 0) {
@@ -91,9 +86,6 @@ struct HomeScreen: View {
                             Text("    Bracelet")
                                 .font(.title3)
                                 .fontWeight(.bold)
-                                .padding(.top, 20)
-                                .padding(.horizontal, 10)
-                                .padding(.bottom, -15)
 
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack (spacing: 0) {
@@ -107,9 +99,6 @@ struct HomeScreen: View {
                             Text("    Glasses")
                                 .font(.title3)
                                 .fontWeight(.bold)
-                                .padding(.top, 20)
-                                .padding(.horizontal, 10)
-                                .padding(.bottom, -15)
 
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack (spacing: 0) {
@@ -125,10 +114,6 @@ struct HomeScreen: View {
                             Text("    Earring")
                                 .font(.title3)
                                 .fontWeight(.bold)
-                                .padding(.top, 20)
-                                .padding(.horizontal, 10)
-                                .padding(.bottom, -15)
-
                             
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack (spacing: 0) {

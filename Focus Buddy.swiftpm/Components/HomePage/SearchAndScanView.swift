@@ -13,13 +13,6 @@ struct SearchAndScanView: View {
             .cornerRadius(10.0)
             .padding(.trailing, 8)
             
-            Button(action: {}) {
-                Image(systemName:"magifyingglass")
-                    .padding()
-                    .background(ColorConfig.Primary.base)
-                    .foregroundColor(.white)
-                    .cornerRadius(10.0)
-            }
         }
         .padding(.horizontal)
     }
