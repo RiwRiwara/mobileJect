@@ -55,18 +55,17 @@ struct HomeScreen: View {
 
 ScrollView (.horizontal, showsIndicators: false) {
     HStack (spacing: 0) {
-        ForEach(necklaceItems.fetchedItems, id: \.self) { item in
-            ProductCardViewAPI(imageURL: item.img, size: 180)
+        ForEach(NecklaceItems.fetchedItems, id: \.self) { item in
+            ProductCardViewApi(imageURL: item.img, size: 180)
         }
         .padding(.leading)
     }
 }
 
-// Inside your ScrollView for Earring items
 ScrollView (.horizontal, showsIndicators: false) {
     HStack (spacing: 0) {
-        ForEach(earringItems.fetchedItems, id: \.self) { item in
-            ProductCardViewAPI(imageURL: item.img, size: 180)
+        ForEach(EarringItems.fetchedItems, id: \.self) { item in
+            ProductCardViewApi(imageURL: item.img, size: 180)
         }
         .padding(.leading)
     }
