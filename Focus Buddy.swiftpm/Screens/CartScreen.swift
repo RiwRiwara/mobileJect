@@ -8,10 +8,8 @@ struct CartScreen: View {
         NavigationView {
             VStack {
                 List {
-                    ForEach(cartItems.items) { item in
-                        // Display item details here
+                    ForEach(cartItems.items, id: \.self) { item in
                         Text(item.name)
-                        // You can add more Text views to display other details like price, quantity, etc.
                     }
                     .onDelete(perform: deleteItem) // Enable swipe to delete
                 }
@@ -41,7 +39,7 @@ struct CartScreen: View {
                     Image(systemName: "arrow.left")
                 }
             )
-        }
+        }// NavigationView
     }
     
     func deleteItem(at offsets: IndexSet) {
