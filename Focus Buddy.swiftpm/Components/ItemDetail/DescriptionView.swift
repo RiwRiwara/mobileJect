@@ -18,7 +18,7 @@ struct DescriptionView: View {
                 .lineSpacing(8.0)
                 .opacity(0.6)
 
-            Text(item.brand)
+            Text(item.brand ?? "")
                     .font(.caption)
                     .fontWeight(.medium)
                     .padding(EdgeInsets(top: 2, leading: 6, bottom: 2, trailing: 6))
@@ -26,7 +26,7 @@ struct DescriptionView: View {
                     .foregroundColor(.white)
                     .cornerRadius(8)
                     Spacer()
-                    Text(item.sale)
+                    Text(item.sale ?? "")
                         .font(.body)
                         .fontWeight(.bold)
      

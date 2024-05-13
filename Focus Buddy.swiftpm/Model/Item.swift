@@ -16,9 +16,9 @@ struct Item: Codable, Hashable {
     let link3img: String?
     let link4img: String?
     let description: String?
-    let views: String?
+    let views: Int?
 
-    init(_id: String? = nil, name: String, sale: String? = nil, brand: String? = nil, img: String? = nil, link1: String? = nil, link2: String? = nil, link3: String? = nil, link4: String? = nil, category: String? = nil, link1img: String? = nil, link2img: String? = nil, link3img: String? = nil, link4img: String? = nil, description: String? = nil, views: String? = nil) {
+    init(_id: String? = nil, name: String, sale: String? = nil, brand: String? = nil, img: String? = nil, link1: String? = nil, link2: String? = nil, link3: String? = nil, link4: String? = nil, category: String? = nil, link1img: String? = nil, link2img: String? = nil, link3img: String? = nil, link4img: String? = nil, description: String? = nil, views: Int? = nil) {
         self._id = _id
         self.name = name
         self.sale = sale

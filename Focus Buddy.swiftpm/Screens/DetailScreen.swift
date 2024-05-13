@@ -10,7 +10,7 @@ struct DetailScreen: View {
             Color("Bg")
             ScrollView  {
                 //Product Image
-                AsyncImage(url: URL(string: item.img)) { phase in
+                AsyncImage(url: URL(string: item.img ?? "")) { phase in
                     switch phase {
                     case .empty:
                             ProgressView()
@@ -39,7 +39,7 @@ struct DetailScreen: View {
             .edgesIgnoringSafeArea(.top)
             
             HStack {
-                Text(item.sale)
+                Text(item.sale ?? "")
                     .font(.title)
                     .foregroundColor(.white)
                 Spacer()
