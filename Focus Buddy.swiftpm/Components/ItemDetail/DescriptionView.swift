@@ -30,6 +30,12 @@ struct DescriptionView: View {
                         .font(.body)
                         .fontWeight(.bold)
      
+            VStack(alignment: .leading, spacing: 10) {
+                Text("Suggested Items")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .padding(.horizontal)
+
                 HStack {
                     AsyncImage(url: URL(string: item.link1img ?? "")) { phase in
                         switch phase {
@@ -39,12 +45,12 @@ struct DescriptionView: View {
                             image
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .frame(width: 100, height: 100)
+                                .frame(maxWidth: .infinity)
                         case .failure:
                             Image(systemName: "photo")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .frame(width: 100, height: 100)
+                                .frame(maxWidth: .infinity)
                         @unknown default:
                             EmptyView()
                         }
@@ -57,12 +63,12 @@ struct DescriptionView: View {
                             image
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .frame(width: 100, height: 100)
+                                .frame(maxWidth: .infinity)
                         case .failure:
                             Image(systemName: "photo")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .frame(width: 100, height: 100)
+                                .frame(maxWidth: .infinity)
                         @unknown default:
                             EmptyView()
                         }
@@ -77,12 +83,12 @@ struct DescriptionView: View {
                             image
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .frame(width: 100, height: 100)
+                                .frame(maxWidth: .infinity)
                         case .failure:
                             Image(systemName: "photo")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .frame(width: 100, height: 100)
+                                .frame(maxWidth: .infinity)
                         @unknown default:
                             EmptyView()
                         }
@@ -95,12 +101,12 @@ struct DescriptionView: View {
                             image
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .frame(width: 100, height: 100)
+                                .frame(maxWidth: .infinity)
                         case .failure:
                             Image(systemName: "photo")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .frame(width: 100, height: 100)
+                                .frame(maxWidth: .infinity)
                         @unknown default:
                             EmptyView()
                         }
@@ -108,6 +114,8 @@ struct DescriptionView: View {
                     }
 
                 }//HStack
+
+            }//VStack
 
 
             
