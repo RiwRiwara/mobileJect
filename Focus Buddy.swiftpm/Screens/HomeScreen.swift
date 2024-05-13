@@ -33,108 +33,110 @@ struct HomeScreen: View {
                 .padding()
         } else {
             NavigationView {
-                ZStack {
-                    Color(#colorLiteral(red: 0.937254902, green: 0.937254902, blue: 0.937254902, alpha: 1))
-                        .ignoresSafeArea()
-                    
-                    ScrollView (showsIndicators: false) {
-                        VStack (alignment: .leading) {
-                            
-                            AppBarView()
-                            
-                            TagLineView()
-                                .padding()
-                            
-                            SearchAndScanView(search: $search)
+                ScrollViewReader { scrollView in
+                    ZStack {
+                        Color(#colorLiteral(red: 0.937254902, green: 0.937254902, blue: 0.937254902, alpha: 1))
+                            .ignoresSafeArea()
+                        
+                        ScrollView (showsIndicators: false) {
+                            VStack (alignment: .leading) {
+                                
+                                AppBarView()
+                                
+                                TagLineView()
+                                    .padding()
+                                
+                                SearchAndScanView(search: $search)
 
-                            if !search.isEmpty {
-                                SearchResultsView(search: search)
-                            }
+                                if !search.isEmpty {
+                                    SearchResultsView(search: search)
+                                }
 
-                                ScrollView (.horizontal, showsIndicators: false) {
-                                    HStack {
-                                        ForEach(0 ..< categories.count) { i in
-                                            Button(action: {
-                                                selectedIndex = i
-                                                withAnimation {
-                                                    scrollView.scrollTo("topic\(categories[i])", anchor: .top)
+                                    ScrollView (.horizontal, showsIndicators: false) {
+                                        HStack {
+                                            ForEach(0 ..< categories.count) { i in
+                                                Button(action: {
+                                                    selectedIndex = i
+                                                    withAnimation {
+                                                        scrollView.scrollTo("topic\(categories[i])", anchor: .top)
+                                                    }
+                                                }) {
+                                                    CategoryView(isActive: selectedIndex == i, text: categories[i])
                                                 }
-                                            }) {
-                                                CategoryView(isActive: selectedIndex == i, text: categories[i])
                                             }
                                         }
+                                        .padding()
                                     }
-                                    .padding()
-                                }
 
 
-                            Text("    Necklace")
-                                .font(.title3)
-                                .fontWeight(.bold)
-                                .id("topicNecklace")
+                                Text("    Necklace")
+                                    .font(.title3)
+                                    .fontWeight(.bold)
+                                    .id("topicNecklace")
 
 
-                            ScrollView (.horizontal, showsIndicators: false) {
-                                HStack (spacing: 0) {
-                                    ForEach(NecklaceItems.fetchedItems, id: \.self) { item in
-                                        ProductCardViewApi(size: 180, item: item)
+                                ScrollView (.horizontal, showsIndicators: false) {
+                                    HStack (spacing: 0) {
+                                        ForEach(NecklaceItems.fetchedItems, id: \.self) { item in
+                                            ProductCardViewApi(size: 180, item: item)
+                                        }
+                                        .padding(.leading)
                                     }
-                                    .padding(.leading)
-                                }
-                            } // ScrollView
-                            
-                            Text("    Earring")
-                                .font(.title3)
-                                .fontWeight(.bold)
-                                .id("topicEarring")
+                                } // ScrollView
+                                
+                                Text("    Earring")
+                                    .font(.title3)
+                                    .fontWeight(.bold)
+                                    .id("topicEarring")
 
-                            ScrollView (.horizontal, showsIndicators: false) {
-                                HStack (spacing: 0) {
-                                    ForEach(EarringItems.fetchedItems, id: \.self) { item in
-                                        ProductCardViewApi(size: 180, item: item)
+                                ScrollView (.horizontal, showsIndicators: false) {
+                                    HStack (spacing: 0) {
+                                        ForEach(EarringItems.fetchedItems, id: \.self) { item in
+                                            ProductCardViewApi(size: 180, item: item)
+                                        }
+                                        .padding(.leading)
                                     }
-                                    .padding(.leading)
-                                }
-                            }// ScrollView
-                            
-                            Text("    Bracelet")
-                                .font(.title3)
-                                .fontWeight(.bold)
-                                .id("topicBracelet")
+                                }// ScrollView
+                                
+                                Text("    Bracelet")
+                                    .font(.title3)
+                                    .fontWeight(.bold)
+                                    .id("topicBracelet")
 
-                            ScrollView (.horizontal, showsIndicators: false) {
-                                HStack (spacing: 0) {
-                                    ForEach(BraceletItems.fetchedItems, id: \.self) { item in
-                                        ProductCardViewApi(size: 180, item: item)
+                                ScrollView (.horizontal, showsIndicators: false) {
+                                    HStack (spacing: 0) {
+                                        ForEach(BraceletItems.fetchedItems, id: \.self) { item in
+                                            ProductCardViewApi(size: 180, item: item)
+                                        }
+                                        .padding(.leading)
                                     }
-                                    .padding(.leading)
-                                }
-                            }// ScrollView
-                            
-                            Text("    Glasses")
-                                .font(.title3)
-                                .fontWeight(.bold)
-                                .id("topicGlasses")
+                                }// ScrollView
+                                
+                                Text("    Glasses")
+                                    .font(.title3)
+                                    .fontWeight(.bold)
+                                    .id("topicGlasses")
 
-                            ScrollView (.horizontal, showsIndicators: false) {
-                                HStack (spacing: 0) {
-                                    ForEach(GlassesItems.fetchedItems, id: \.self) { item in
-                                        ProductCardViewApi(size: 180, item: item)
+                                ScrollView (.horizontal, showsIndicators: false) {
+                                    HStack (spacing: 0) {
+                                        ForEach(GlassesItems.fetchedItems, id: \.self) { item in
+                                            ProductCardViewApi(size: 180, item: item)
+                                        }
+                                        .padding(.leading)
                                     }
-                                    .padding(.leading)
-                                }
-                            }// ScrollView
+                                }// ScrollView
 
-                            
-                            
+                                
+                                
+                            }
+                        }.padding(.top, 20)
+                        
+                        VStack {
+                            Spacer()
+                            BottomNavBarView().padding()
                         }
-                    }.padding(.top, 20)
-                    
-                    VStack {
-                        Spacer()
-                        BottomNavBarView().padding()
-                    }
-                } // ZStack
+                    } // ZStack
+                }// ScrollViewReader
             } // NavigationView
         }
     } // body
