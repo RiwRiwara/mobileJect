@@ -1,3 +1,4 @@
+import SwiftUI
 struct BottomNavBarView: View {
     @State private var isCartActive: Bool = false // State to track cart navigation
 

@@ -1,9 +1,12 @@
 
 import SwiftUI
 
+
+
 struct DetailScreen: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     let item: Item
+    @EnvironmentObject var cartItems: CartItems
 
     var body: some View {
         ZStack {
@@ -44,6 +47,9 @@ struct DetailScreen: View {
                     .foregroundColor(.white)
                 Spacer()
                 
+            Button(action: {
+                cartItems.addItem(item) 
+            }) {
                 Text("Add to Cart")
                     .font(.title3)
                     .fontWeight(.semibold)
@@ -52,6 +58,7 @@ struct DetailScreen: View {
                     .padding(.horizontal, 8)
                     .background(Color.white)
                     .cornerRadius(10.0)
+            }
                 
             }
             .padding()

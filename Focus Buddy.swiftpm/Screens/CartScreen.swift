@@ -1,16 +1,22 @@
 import SwiftUI
 
 struct CartScreen: View {
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var cartItems: CartItems 
     var body: some View {
         NavigationView {
             VStack {
-                List {
-                    // Your list of cart items here
-                    Text("Item 1")
-                    Text("Item 2")
-                    Text("Item 3")
+        NavigationView {
+            
+            List {
+                ForEach(cartItems.items) { item in
+                    Text(item.name) // Display item name, you can customize this
                 }
-                .listStyle(InsetGroupedListStyle())
+                .onDelete(perform: deleteItem)
+            }
+            .navigationBarTitle("Cart")
+            .navigationBarItems(trailing: EditButton())
+        }
                 
                 Spacer()
                 
@@ -21,7 +27,7 @@ struct CartScreen: View {
                     Text("Checkout")
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .background(Color.blue)
+                        .background(ColorConfig.Primary.base)
                         .foregroundColor(Color.white)
                         .cornerRadius(8)
                         .padding(.horizontal, 20)
@@ -29,6 +35,18 @@ struct CartScreen: View {
                 .padding(.bottom, 20)
             }
             .navigationBarTitle("Cart")
+            .navigationBarBackButtonHidden(true) // Hide the default back button
+            .navigationBarItems(leading:
+                Button(action: {
+                    self.presentationMode.wrappedValue.dismiss() // Dismiss the view when "Go Back" button is tapped
+                }) {
+                    Image(systemName: "arrow.left") // You can customize the button appearance here
+                }
+            )
         }
+    }// body
+
+        func deleteItem(at offsets: IndexSet) {
+        cartItems.items.remove(atOffsets: offsets)
     }
 }
