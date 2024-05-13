@@ -8,18 +8,18 @@ import PackageDescription
 import AppleProductTypes
 
 let package = Package(
-    name: "Midnight",
+    name: "Wishlux",
     platforms: [
         .iOS("17.2")
     ],
     products: [
         .iOSApplication(
-            name: "Midnight",
+            name: "Wishlux",
             targets: ["AppModule"],
             displayVersion: "1.0",
             bundleVersion: "1",
             appIcon: .asset("AppIcon"),
-            accentColor: .presetColor(.indigo),
+            accentColor: .presetColor(.brown),
             supportedDeviceFamilies: [
                 .pad,
                 .phone
