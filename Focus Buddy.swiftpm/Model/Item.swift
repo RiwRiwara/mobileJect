@@ -1,7 +1,7 @@
 import Foundation
 
 struct Item: Codable {
-    let id: String
+    let _id: String
     let name: String
     let sale: String
     let brand: String
@@ -12,3 +12,4 @@ struct Item: Codable {
     let link4: String
     let category: String
 }
+.

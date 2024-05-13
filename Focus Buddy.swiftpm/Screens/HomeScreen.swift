@@ -6,11 +6,8 @@ struct HomeScreen: View {
     @State private var isFetchingData = true
     @State private var errorMessage = ""
 
-    @StateObject private var dataManager = DataManager()
-
-    @State private var NecklaceItems: [Item] = []
-    @State private var EarringItems: [Item] = []
-    
+    @StateObject private var NecklaceItems = DataManager()
+    @StateObject private var EarringItems = DataManager()
 
 
     private let categories = ["All", "Bracelet", "Necklace", "Earring", "Glasses"]
@@ -40,6 +37,12 @@ struct HomeScreen: View {
                                 .padding()
                             
                             SearchAndScanView(search: $search)
+
+                            HStack {
+                                List(NecklaceItems.fetchedItems, id: \._id) { item in
+                                    Text(item.name)
+                                }
+                            }
                             
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack {
@@ -121,11 +124,11 @@ struct HomeScreen: View {
     }
 
     func fetchNecklaceItems() {
-        dataManager.fetchItems(category: "Necklace")
+        NecklaceItems.fetchItems(category: "Necklace")
     }
 
     func fetchEarringItems() {
-        dataManager.fetchItems(category: "Earring")
+        EarringItems.fetchItems(category: "Earring")
     }
 
 
