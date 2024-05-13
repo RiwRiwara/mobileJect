@@ -7,16 +7,15 @@ struct CartScreen: View {
         NavigationView {
             VStack {
         NavigationView {
-            
+
             List {
-                ForEach(cartItems.items) { item in
-                    Text(item.name) // Display item name, you can customize this
+                ForEach(cartItems.itemss, id: \.self) { item in
+                    Text(item.name)
                 }
                 .onDelete(perform: deleteItem)
             }
             .navigationBarTitle("Cart")
-            .navigationBarItems(trailing: EditButton())
-        }
+            .nav
                 
                 Spacer()
                 
