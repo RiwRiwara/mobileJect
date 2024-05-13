@@ -8,6 +8,9 @@ struct HomeScreen: View {
 
     @StateObject private var NecklaceItems = DataManager()
     @StateObject private var EarringItems = DataManager()
+    @StateObject private var BraceletItems = DataManager()
+    @StateObject private var GlassesItems = DataManager()
+
 
 
     private let categories = ["All", "Bracelet", "Necklace", "Earring", "Glasses"]
@@ -40,16 +43,16 @@ struct HomeScreen: View {
                             
                             SearchAndScanView(search: $search)
 
-                            ScrollView (.horizontal, showsIndicators: false) {
-                                HStack {
-                                    ForEach(0 ..< categories.count) { i in
-                                        Button(action: {selectedIndex = i}) {
-                                            CategoryView(isActive: selectedIndex == i, text: categories[i])
-                                        }
-                                    }
-                                }
-                                .padding()
-                            }
+                            // ScrollView (.horizontal, showsIndicators: false) {
+                            //     HStack {
+                            //         ForEach(0 ..< categories.count) { i in
+                            //             Button(action: {selectedIndex = i}) {
+                            //                 CategoryView(isActive: selectedIndex == i, text: categories[i])
+                            //             }
+                            //         }
+                            //     }
+                            //     .padding()
+                            // }
 
                             Text("Necklace")
                                 .font(.custom("PlayfairDisplay-Bold", size: 24))
@@ -62,8 +65,7 @@ struct HomeScreen: View {
                                     }
                                     .padding(.leading)
                                 }
-                            }
-
+                            } // ScrollView
                             
                             Text("Earring")
                                 .font(.custom("PlayfairDisplay-Bold", size: 24))
@@ -76,7 +78,35 @@ struct HomeScreen: View {
                                     }
                                     .padding(.leading)
                                 }
-                            }
+                            }// ScrollView
+                            
+                            Text("Bracelet")
+                                .font(.custom("PlayfairDisplay-Bold", size: 24))
+                                .padding(.horizontal)
+
+                            ScrollView (.horizontal, showsIndicators: false) {
+                                HStack (spacing: 0) {
+                                    ForEach(BraceletItems.fetchedItems, id: \.self) { item in
+                                        ProductCardViewApi(size: 180, item: item)
+                                    }
+                                    .padding(.leading)
+                                }
+                            }// ScrollView
+                            
+                            Text("Glasses")
+                                .font(.custom("PlayfairDisplay-Bold", size: 24))
+                                .padding(.horizontal)
+
+                            ScrollView (.horizontal, showsIndicators: false) {
+                                HStack (spacing: 0) {
+                                    ForEach(GlassesItems.fetchedItems, id: \.self) { item in
+                                        ProductCardViewApi(size: 180, item: item)
+                                    }
+                                    .padding(.leading)
+                                }
+                            }// ScrollView
+
+                            
                             
                             // Old code
                             Text("Earring")
@@ -98,18 +128,7 @@ struct HomeScreen: View {
                                 }
                             }.padding(.bottom)
                             
-                            Text("Necklace")
-                                .font(.custom("PlayfairDisplay-Bold", size: 24))
-                                .padding(.horizontal)
-                            
-                            ScrollView (.horizontal, showsIndicators: false) {
-                                HStack (spacing: 0) {
-                                    ForEach(0 ..< 4) { i in
-                                        ProductCardView(image: Image("chair_\(4-i)"), size: 180)
-                                    }
-                                    .padding(.leading)
-                                }
-                            }
+
                             
                         }
                     }.padding(.top, 20)
@@ -152,6 +171,14 @@ struct HomeScreen: View {
 
     func fetchEarringItems() {
         EarringItems.fetchItems(category: "Earring")
+    }
+
+    func fetchBraceletItems() {
+        BraceletItems.fetchItems(category: "Bracelet")
+    }
+
+    func fetchGlassesItems() {
+        GlassesItems.fetchItems(category: "Glasses")
     }
 
 
