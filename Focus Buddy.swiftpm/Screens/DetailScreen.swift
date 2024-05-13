@@ -46,7 +46,7 @@ struct DetailScreen: View {
 
                 Button(action: {
                     cartItems.addItem(item)
-                    showingAlert = true // Set showingAlert to true when item is added
+                    showingAlert = true 
                 }) {
                     Text("Add to Cart")
                         .font(.title3)

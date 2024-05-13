@@ -54,19 +54,21 @@ struct HomeScreen: View {
 
                                     ScrollView (.horizontal, showsIndicators: false) {
                                         HStack {
-                                            ForEach(0 ..< categories.count) { i in
+                                            ForEach(categories.indices, id: \.self) { index in
                                                 Button(action: {
-                                                    selectedIndex = i
+                                                    selectedIndex = index
                                                     withAnimation {
-                                                        scrollView.scrollTo("topic\(categories[i])", anchor: .top)
+                                                        scrollView.scrollTo("topic\(categories[index])", anchor: .top)
                                                     }
                                                 }) {
-                                                    CategoryView(isActive: selectedIndex == i, text: categories[i])
+                                                    CategoryView(isActive: selectedIndex == index, text: categories[index])
                                                 }
                                             }
+
                                         }
                                         .padding()
                                     }
+                                    
 
 
                                 Text("    Necklace")
