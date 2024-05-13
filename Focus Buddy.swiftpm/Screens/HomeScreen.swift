@@ -23,6 +23,8 @@ struct HomeScreen: View {
                         CheckApiAvailable()
                         fetchNecklaceItems()
                         fetchEarringItems()
+                        fetchBraceletItems()
+                        fetchGlassesItems()
                     }
         } else if !errorMessage.isEmpty {
             Text(errorMessage)
@@ -55,8 +57,8 @@ struct HomeScreen: View {
                             // }
 
                             Text("Necklace")
-                                .font(.custom("PlayfairDisplay-Bold", size: 24))
-                                .padding(.horizontal)
+                                .font(.title3)
+                                .fontWeight(.bold)
 
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack (spacing: 0) {
@@ -68,8 +70,8 @@ struct HomeScreen: View {
                             } // ScrollView
                             
                             Text("Earring")
-                                .font(.custom("PlayfairDisplay-Bold", size: 24))
-                                .padding(.horizontal)
+                                .font(.title3)
+                                .fontWeight(.bold)
 
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack (spacing: 0) {
@@ -81,8 +83,8 @@ struct HomeScreen: View {
                             }// ScrollView
                             
                             Text("Bracelet")
-                                .font(.custom("PlayfairDisplay-Bold", size: 24))
-                                .padding(.horizontal)
+                                .font(.title3)
+                                .fontWeight(.bold)
 
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack (spacing: 0) {
@@ -94,8 +96,8 @@ struct HomeScreen: View {
                             }// ScrollView
                             
                             Text("Glasses")
-                                .font(.custom("PlayfairDisplay-Bold", size: 24))
-                                .padding(.horizontal)
+                                .font(.title3)
+                                .fontWeight(.bold)
 
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack (spacing: 0) {
@@ -107,11 +109,10 @@ struct HomeScreen: View {
                             }// ScrollView
 
                             
-                            
                             // Old code
                             Text("Earring")
-                                .font(.custom("PlayfairDisplay-Bold", size: 24))
-                                .padding(.horizontal)
+                                .font(.title3)
+                                .fontWeight(.bold)
                             
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack (spacing: 0) {
