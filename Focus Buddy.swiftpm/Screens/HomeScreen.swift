@@ -5,11 +5,12 @@ import SwiftUI
 struct HomeScreen: View {
     @State private var search: String = ""
     @State private var selectedIndex: Int = 1
+    @State private var message: String = ""
     
     private let categories = ["All", "Chair", "Sofa", "Lamp", "Kitchen", "Table"]
     var body: some View {
         NavigationView {
-            ZStack {
+              ZStack {
                 Color(#colorLiteral(red: 0.937254902, green: 0.937254902, blue: 0.937254902, alpha: 1))
                     .ignoresSafeArea()
                 
@@ -80,6 +81,38 @@ struct HomeScreen: View {
 //        .navigationBarHidden(true)
 //        .navigationBarBackButtonHidden(true)
     }
+    
+    func fetchData() {
+        guard let url = URL(string: "https://ezevent.online/api/test") else {
+            print("Invalid URL")
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200...299).contains(httpResponse.statusCode) else {
+                print("Invalid response")
+                return
+            }
+            
+            if let data = data {
+                do {
+                    let decodedData = try JSONDecoder().decode(MessageResponse.self, from: data)
+                    DispatchQueue.main.async {
+                        self.message = decodedData.message
+                    }
+                } catch {
+                    print("Error decoding JSON: \(error.localizedDescription)")
+                }
+            }
+        }.resume()
+    }
+    
 }
 
 struct HomeScreen_Previews: PreviewProvider {
@@ -224,4 +257,8 @@ struct BottomNavBarItem: View {
                 .frame(maxWidth: .infinity)
         }
     }
+}
+
+struct MessageResponse: Codable {
+    let message: String
 }
