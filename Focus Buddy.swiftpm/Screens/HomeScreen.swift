@@ -51,16 +51,16 @@ struct HomeScreen: View {
                                 SearchResultsView(search: search)
                             }
 
-                            // ScrollView (.horizontal, showsIndicators: false) {
-                            //     HStack {
-                            //         ForEach(0 ..< categories.count) { i in
-                            //             Button(action: {selectedIndex = i}) {
-                            //                 CategoryView(isActive: selectedIndex == i, text: categories[i])
-                            //             }
-                            //         }
-                            //     }
-                            //     .padding()
-                            // }
+                            ScrollView (.horizontal, showsIndicators: false) {
+                                HStack {
+                                    ForEach(0 ..< categories.count) { i in
+                                        Button(action: {selectedIndex = i}) {
+                                            CategoryView(isActive: selectedIndex == i, text: categories[i])
+                                        }
+                                    }
+                                }
+                                .padding()
+                            }
 
                             Text("    Necklace")
                                 .font(.title3)
