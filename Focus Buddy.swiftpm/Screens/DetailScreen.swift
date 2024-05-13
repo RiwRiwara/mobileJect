@@ -42,7 +42,6 @@ struct DetailScreen: View {
             .edgesIgnoringSafeArea(.bottom)
         }
         .padding(.top, 5)
-        .padding(.bottom, 60)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: BackButton(action: {presentationMode.wrappedValue.dismiss()}), trailing: Image("threeDot"))
     }
