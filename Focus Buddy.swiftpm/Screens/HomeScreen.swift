@@ -5,7 +5,14 @@ struct HomeScreen: View {
     @State private var selectedIndex: Int = 1
     @State private var isFetchingData = true
     @State private var errorMessage = ""
+
+    @StateObject private var dataManager = DataManager()
+
+    @State private var NecklaceItems: [Item] = []
+    @State private var EarringItems: [Item] = []
     
+
+
     private let categories = ["All", "Bracelet", "Necklace", "Earring", "Glasses"]
 
     var body: some View {
@@ -13,7 +20,7 @@ struct HomeScreen: View {
                 Text("Loading...")
                     .padding()
                     .onAppear {
-                        fetchData()
+                        CheckApiAvailable()
                     }
             } else if !errorMessage.isEmpty {
                 Text(errorMessage)
@@ -45,7 +52,7 @@ struct HomeScreen: View {
                                 .padding()
                             }
                             
-                            Text("Popular")
+                            Text("Bracelet")
                                 .font(.custom("PlayfairDisplay-Bold", size: 24))
                                 .padding(.horizontal)
                             
@@ -65,7 +72,7 @@ struct HomeScreen: View {
                             }
                             .padding(.bottom)
                             
-                            Text("Best")
+                            Text("Necklace")
                                 .font(.custom("PlayfairDisplay-Bold", size: 24))
                                 .padding(.horizontal)
                             
@@ -90,14 +97,13 @@ struct HomeScreen: View {
         }
     }
     
-    func fetchData() {
+    func CheckApiAvailable() {
         guard let url = URL(string: Endpoint.baseURL + Endpoint.Path.testApi) else {
             self.errorMessage = "Invalid URL"
             print("Invalid URL")
             self.isFetchingData = false
             return
         }
-        
         DataFetcher.fetchData(from: url, responseType: MessageResponse.self) { result in
             switch result {
             case .success(let decodedData):
@@ -115,8 +121,56 @@ struct HomeScreen: View {
     }
 
 
+    func fetchItemData(category: String = "", items: inout [Item], sale: String = "", brand: String = "", name: String = "") {
+        var components = URLComponents(string: Endpoint.baseURL + Endpoint.Path.getItems)!
+        
+        if !category.isEmpty {
+            components.queryItems?.append(URLQueryItem(name: "category", value: category))
+        }
+        if !sale.isEmpty {
+            components.queryItems?.append(URLQueryItem(name: "sale", value: sale))
+        }
+        if !brand.isEmpty {
+            components.queryItems?.append(URLQueryItem(name: "brand", value: brand))
+        }
+        if !name.isEmpty {
+            components.queryItems?.append(URLQueryItem(name: "name", value: name))
+        }
+
+        guard let url = components.url else {
+            self.errorMessage = "Invalid URL"
+            print("Invalid URL")
+            return
+        }
+
+        DataFetcher.fetchData(from: url, responseType: [Item].self) { result in
+            switch result {
+            case .success(let fetchedItems):
+                DispatchQueue.main.async {
+                    items = fetchedItems
+                    self.isFetchingData = false
+                }
+            case .failure(let error):
+                print("Error fetching data: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    self.errorMessage = "Failed to fetch data"
+                    self.isFetchingData = false
+                }
+            }
+        }
+    }
+
+    func fetchNecklaceItems() {
+        fetchItemData(category: "Necklace", items: &NecklaceItems)
+    }
+
+    func fetchEarringItems() {
+        fetchItemData(category: "Earring", items: &EarringItems)
+    }
+
+
+    
+
+
 }
 
-struct MessageResponse: Codable {
-    let message: String
-}
