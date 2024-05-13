@@ -45,6 +45,10 @@ struct HomeScreen: View {
                             
                             SearchAndScanView(search: $search)
 
+                            if !search.isEmpty {
+                                SearchResultsView(search: search)
+                            }
+
                             // ScrollView (.horizontal, showsIndicators: false) {
                             //     HStack {
                             //         ForEach(0 ..< categories.count) { i in
