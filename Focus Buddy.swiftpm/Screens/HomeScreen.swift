@@ -83,7 +83,7 @@ struct HomeScreen: View {
                     
                     VStack {
                         Spacer()
-                        BottomNavBarView()
+                        // BottomNavBarView()
                     }
                 }
             }

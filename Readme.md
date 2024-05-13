@@ -1,4 +1,2 @@
-# Focus Buddy
+# Wishlux
 <hr >
-Timer application 
-Test
