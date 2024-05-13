@@ -79,7 +79,7 @@ struct HomeScreen: View {
                             }
                             
                         }
-                    }
+                    }.padding(.top, 20)
                     
                     VStack {
                         Spacer()
@@ -116,14 +116,6 @@ struct HomeScreen: View {
 
 
 }
-
-// struct HomeScreen_Previews: PreviewProvider {
-//     static var previews: some View {
-//         HomeScreen()
-//     }
-// }
-
-
 
 struct MessageResponse: Codable {
     let message: String
