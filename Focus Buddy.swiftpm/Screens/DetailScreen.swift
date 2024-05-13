@@ -3,23 +3,39 @@ import SwiftUI
 
 struct DetailScreen: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    let item: Item
+
     var body: some View {
         ZStack {
             Color("Bg")
             ScrollView  {
                 //Product Image
-                    Image("chair_1")
-                        .resizable()
-                        .aspectRatio(1,contentMode: .fit)
-                        .edgesIgnoringSafeArea(.top)
+                AsyncImage(url: URL(string: item.img)) { phase in
+                    switch phase {
+                    case .empty:
+                            ProgressView()
+                    case .success(let image):
+                            image
+                                .resizable()
+                                .aspectRatio(1,contentMode: .fit)
+                                .edgesIgnoringSafeArea(.top)
+                    case .failure:
+                            Image(systemName: "photo")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: size, height: size)
+                    @unknown default:
+                            EmptyView()
+                        }
+                    }
                 
-                DescriptionView()
+                DescriptionView(item: item)
                 
             }
             .edgesIgnoringSafeArea(.top)
             
             HStack {
-                Text("$1299")
+                Text(item.sale)
                     .font(.title)
                     .foregroundColor(.white)
                 Spacer()

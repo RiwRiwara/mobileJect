@@ -3,9 +3,7 @@ struct BottomNavBarView: View {
     var body: some View {
         HStack {
             BottomNavBarItem(image: Image("Home"), action: {})
-            BottomNavBarItem(image: Image("fav"), action: {})
-            BottomNavBarItem(image: Image("shop"), action: {})
-            BottomNavBarItem(image: Image("User"), action: {})
+            BottomNavBarItem(image: Image("Shop"), action: {})
         }
         .padding()
         .background(Color.white)
