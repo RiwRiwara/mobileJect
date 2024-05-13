@@ -53,27 +53,32 @@ struct HomeScreen: View {
                                 .padding()
                             }
 
-ScrollView (.horizontal, showsIndicators: false) {
-    HStack (spacing: 0) {
-        ForEach(NecklaceItems.fetchedItems, id: \.self) { item in
-            ProductCardViewApi(imageURL: item.img, size: 180)
-        }
-        .padding(.leading)
-    }
-}
-
-ScrollView (.horizontal, showsIndicators: false) {
-    HStack (spacing: 0) {
-        ForEach(EarringItems.fetchedItems, id: \.self) { item in
-            ProductCardViewApi(imageURL: item.img, size: 180)
-        }
-        .padding(.leading)
-    }
-}
-                            
-                            Text("Bracelet")
+                            Text("Necklace")
                                 .font(.custom("PlayfairDisplay-Bold", size: 24))
                                 .padding(.horizontal)
+
+                            ScrollView (.horizontal, showsIndicators: false) {
+                                HStack (spacing: 0) {
+                                    ForEach(NecklaceItems.fetchedItems, id: \.self) { item in
+                                        ProductCardViewApi(imageURL: item.img, size: 180)
+                                    }
+                                    .padding(.leading)
+                                }
+                            }
+
+                            Text("Earring")
+                                .font(.custom("PlayfairDisplay-Bold", size: 24))
+                                .padding(.horizontal)
+
+                            ScrollView (.horizontal, showsIndicators: false) {
+                                HStack (spacing: 0) {
+                                    ForEach(EarringItems.fetchedItems, id: \.self) { item in
+                                        ProductCardViewApi(imageURL: item.img, size: 180)
+                                    }
+                                    .padding(.leading)
+                                }
+                            }
+
                             
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack (spacing: 0) {
@@ -91,17 +96,9 @@ ScrollView (.horizontal, showsIndicators: false) {
                             }
                             .padding(.bottom)
                             
-                            Text("Necklace")
-                                .font(.custom("PlayfairDisplay-Bold", size: 24))
-                                .padding(.horizontal)
+
                             
-                            ScrollView (.horizontal, showsIndicators: false) {
-                                HStack (spacing: 0) {
-                                    ForEach(0 ..< 4) { i in
-                                        ProductCardView(image: Image("chair_\(4-i)"), size: 180)
-                                    }
-                                    .padding(.leading)
-                                }
+
                             }
                             
                         }
