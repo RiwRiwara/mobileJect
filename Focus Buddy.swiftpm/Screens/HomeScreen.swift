@@ -18,6 +18,8 @@ struct HomeScreen: View {
                     .padding()
                     .onAppear {
                         CheckApiAvailable()
+                        fetchNecklaceItems()
+                        fetchEarringItems()
                     }
             } else if !errorMessage.isEmpty {
                 Text(errorMessage)

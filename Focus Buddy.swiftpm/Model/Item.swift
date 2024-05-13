@@ -12,4 +12,3 @@ struct Item: Codable {
     let link4: String
     let category: String
 }
-.
