@@ -121,11 +121,11 @@ struct HomeScreen: View {
     }
 
     func fetchNecklaceItems() {
-        fetchItemData(category: "Necklace", items: &NecklaceItems)
+        dataManager.fetchItems(category: "Necklace")
     }
 
     func fetchEarringItems() {
-        fetchItemData(category: "Earring", items: &EarringItems)
+        dataManager.fetchItems(category: "Earring")
     }
 
 
