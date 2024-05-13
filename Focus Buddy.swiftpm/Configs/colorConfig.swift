@@ -17,7 +17,7 @@ extension Color {
 }
 
 enum ColorConfig {
-    enum CustomColor {
-        static let myColor = Color(hex: "#917E5F")
+    enum Primary {
+        static let base = Color(hex: "#917E5F")
     }
 }

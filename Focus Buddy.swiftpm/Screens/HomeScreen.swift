@@ -116,6 +116,7 @@ struct HomeScreen: View {
                     
                     VStack {
                         Spacer()
+                        BottomNavBarView().padding()
                     }
                 } // ZStack
             } // NavigationView

@@ -1,12 +1,12 @@
 import SwiftUI
 struct TagLineView: View {
     var body: some View {
-        Text("Find the \nBest ")
+        Text("Find your \nLuxury ")
             .font(.custom("PlayfairDisplay-Regular", size: 28))
-            .foregroundColor(Color("Primary"))
-            + Text("Furniture!")
+            .foregroundColor(ColorConfig.Primary.base)
+            + Text("accessories!")
             .font(.custom("PlayfairDisplay-Bold", size: 28))
             .fontWeight(.bold)
-            .foregroundColor(Color("Primary"))
+            .foregroundColor(ColorConfig.Primary.base)
     }
 }
