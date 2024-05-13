@@ -1,6 +1,6 @@
 import SwiftUI
 
-extension HexColor {
+extension Color {
     init(hex: String) {
         var hexString = hex.trimmingCharacters(in: .whitespacesAndNewlines)
         hexString = hexString.replacingOccurrences(of: "#", with: "")
@@ -18,6 +18,6 @@ extension HexColor {
 
 enum ColorConfig {
     enum CustomColor {
-        static let base = HexColor(hex: "#917E5F")
+        static let myColor = Color(hex: "#917E5F")
     }
 }
