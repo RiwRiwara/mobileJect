@@ -7,9 +7,16 @@ struct HomeScreen: View {
     @State private var selectedIndex: Int = 1
     @State private var message: String = ""
     
-    private let categories = ["All", "Chair", "Sofa", "Lamp", "Kitchen", "Table"]
+    private let categories = ["All", "Bracelet", "Necklace", "Earring", "Glasses"]
     var body: some View {
         NavigationView {
+            VStack{
+                Text(message)
+                    .padding()
+                    .onAppear {
+                        fetchData()
+                    }
+            }
               ZStack {
                 Color(#colorLiteral(red: 0.937254902, green: 0.937254902, blue: 0.937254902, alpha: 1))
                     .ignoresSafeArea()
@@ -82,37 +89,25 @@ struct HomeScreen: View {
 //        .navigationBarBackButtonHidden(true)
     }
     
+
     func fetchData() {
-        guard let url = URL(string: "https://ezevent.online/api/test") else {
+        guard let url = URL(string: Endpoint.baseURL + Endpoint.Path.testApi) else {
             print("Invalid URL")
             return
         }
         
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
-                print("Error: \(error.localizedDescription)")
-                return
-            }
-            
-            guard let httpResponse = response as? HTTPURLResponse,
-                  (200...299).contains(httpResponse.statusCode) else {
-                print("Invalid response")
-                return
-            }
-            
-            if let data = data {
-                do {
-                    let decodedData = try JSONDecoder().decode(MessageResponse.self, from: data)
-                    DispatchQueue.main.async {
-                        self.message = decodedData.message
-                    }
-                } catch {
-                    print("Error decoding JSON: \(error.localizedDescription)")
+        DataFetcher.fetchData(from: url, responseType: MessageResponse.self) { result in
+            switch result {
+            case .success(let decodedData):
+                DispatchQueue.main.async {
+                    self.message = decodedData.message
                 }
+            case .failure(let error):
+                print("Error: \(error.localizedDescription)")
             }
-        }.resume()
+        }
     }
-    
+
 }
 
 struct HomeScreen_Previews: PreviewProvider {
