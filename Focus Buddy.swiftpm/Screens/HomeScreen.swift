@@ -120,46 +120,6 @@ struct HomeScreen: View {
         }
     }
 
-
-    func fetchItemData(category: String = "", items: inout [Item], sale: String = "", brand: String = "", name: String = "") {
-        var components = URLComponents(string: Endpoint.baseURL + Endpoint.Path.getItems)!
-        
-        if !category.isEmpty {
-            components.queryItems?.append(URLQueryItem(name: "category", value: category))
-        }
-        if !sale.isEmpty {
-            components.queryItems?.append(URLQueryItem(name: "sale", value: sale))
-        }
-        if !brand.isEmpty {
-            components.queryItems?.append(URLQueryItem(name: "brand", value: brand))
-        }
-        if !name.isEmpty {
-            components.queryItems?.append(URLQueryItem(name: "name", value: name))
-        }
-
-        guard let url = components.url else {
-            self.errorMessage = "Invalid URL"
-            print("Invalid URL")
-            return
-        }
-
-        DataFetcher.fetchData(from: url, responseType: [Item].self) { result in
-            switch result {
-            case .success(let fetchedItems):
-                DispatchQueue.main.async {
-                    items = fetchedItems
-                    self.isFetchingData = false
-                }
-            case .failure(let error):
-                print("Error fetching data: \(error.localizedDescription)")
-                DispatchQueue.main.async {
-                    self.errorMessage = "Failed to fetch data"
-                    self.isFetchingData = false
-                }
-            }
-        }
-    }
-
     func fetchNecklaceItems() {
         fetchItemData(category: "Necklace", items: &NecklaceItems)
     }
