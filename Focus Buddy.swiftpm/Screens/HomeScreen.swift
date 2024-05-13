@@ -51,20 +51,27 @@ struct HomeScreen: View {
                                 SearchResultsView(search: search)
                             }
 
-                            ScrollView (.horizontal, showsIndicators: false) {
-                                HStack {
-                                    ForEach(0 ..< categories.count) { i in
-                                        Button(action: {selectedIndex = i}) {
-                                            CategoryView(isActive: selectedIndex == i, text: categories[i])
+                                ScrollView (.horizontal, showsIndicators: false) {
+                                    HStack {
+                                        ForEach(0 ..< categories.count) { i in
+                                            Button(action: {
+                                                selectedIndex = i
+                                                withAnimation {
+                                                    scrollView.scrollTo("topic\(categories[i])", anchor: .top)
+                                                }
+                                            }) {
+                                                CategoryView(isActive: selectedIndex == i, text: categories[i])
+                                            }
                                         }
                                     }
+                                    .padding()
                                 }
-                                .padding()
-                            }
+
 
                             Text("    Necklace")
                                 .font(.title3)
                                 .fontWeight(.bold)
+                                .id("topicNecklace")
 
 
                             ScrollView (.horizontal, showsIndicators: false) {
@@ -79,6 +86,7 @@ struct HomeScreen: View {
                             Text("    Earring")
                                 .font(.title3)
                                 .fontWeight(.bold)
+                                .id("topicEarring")
 
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack (spacing: 0) {
@@ -92,6 +100,7 @@ struct HomeScreen: View {
                             Text("    Bracelet")
                                 .font(.title3)
                                 .fontWeight(.bold)
+                                .id("topicBracelet")
 
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack (spacing: 0) {
@@ -105,6 +114,7 @@ struct HomeScreen: View {
                             Text("    Glasses")
                                 .font(.title3)
                                 .fontWeight(.bold)
+                                .id("topicGlasses")
 
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack (spacing: 0) {
