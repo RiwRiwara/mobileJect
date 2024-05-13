@@ -1,9 +1,13 @@
 import SwiftUI
+
 struct BottomNavBarView: View {
     var body: some View {
         HStack {
             BottomNavBarItem(image: Image(systemName: "house.fill"), action: {})
-            BottomNavBarItem(image: Image(systemName: "cart.fill"),action:{})
+            
+            NavigationLink(destination: CartScreen()) {
+                BottomNavBarItem(image: Image(systemName: "cart.fill"), action: {})
+            }
         }
         .padding()
         .background(Color.white)
