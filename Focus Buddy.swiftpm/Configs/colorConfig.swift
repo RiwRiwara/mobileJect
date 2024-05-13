@@ -19,5 +19,6 @@ extension Color {
 enum ColorConfig {
     enum Primary {
         static let base = Color(hex: "#917E5F")
+        static let white = Color(hex: "#ffffff")
     }
 }

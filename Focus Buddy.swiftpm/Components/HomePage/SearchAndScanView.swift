@@ -6,7 +6,7 @@ struct SearchAndScanView: View {
             HStack {
                 Image("Search")
                     .padding(.trailing, 8)
-                TextField("Search Furniture", text: $search)
+                TextField("Search Accessories", text: $search)
             }
             .padding(.all, 20)
             .background(Color.white)
@@ -16,7 +16,7 @@ struct SearchAndScanView: View {
             Button(action: {}) {
                 Image("Scan")
                     .padding()
-                    .background(Color("Primary"))
+                    .background(ColorConfig.Primary.white)
                     .cornerRadius(10.0)
             }
         }

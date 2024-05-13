@@ -27,9 +27,13 @@ struct ProductCardViewApi: View {
             Text(item.name).font(.subheadline).fontWeight(.bold)
             
             HStack (spacing: 2) {
-                ForEach(0 ..< 5) { item in
-                    Image("star")
-                }
+            Text(item.brand)
+                .font(.caption)
+                .fontWeight(.medium)
+                .padding(EdgeInsets(top: 2, leading: 6, bottom: 2, trailing: 6))
+                .background(ColorConfig.Primary.base)
+                .foregroundColor(.white)
+                .cornerRadius(8)
                 Spacer()
                 Text(item.sale)
                     .font(.body)
