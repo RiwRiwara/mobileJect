@@ -40,11 +40,7 @@ struct HomeScreen: View {
                             
                             SearchAndScanView(search: $search)
 
-                            HStack {
-                                List(NecklaceItems.fetchedItems, id: \._id) { item in
-                                    Text(item.name)
-                                }
-                            }
+
                             
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack {
@@ -56,6 +52,25 @@ struct HomeScreen: View {
                                 }
                                 .padding()
                             }
+
+ScrollView (.horizontal, showsIndicators: false) {
+    HStack (spacing: 0) {
+        ForEach(necklaceItems.fetchedItems, id: \.self) { item in
+            ProductCardViewAPI(imageURL: item.img, size: 180)
+        }
+        .padding(.leading)
+    }
+}
+
+// Inside your ScrollView for Earring items
+ScrollView (.horizontal, showsIndicators: false) {
+    HStack (spacing: 0) {
+        ForEach(earringItems.fetchedItems, id: \.self) { item in
+            ProductCardViewAPI(imageURL: item.img, size: 180)
+        }
+        .padding(.leading)
+    }
+}
                             
                             Text("Bracelet")
                                 .font(.custom("PlayfairDisplay-Bold", size: 24))

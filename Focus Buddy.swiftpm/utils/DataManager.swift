@@ -3,20 +3,38 @@ import Foundation
 class DataManager: ObservableObject {
     @Published var fetchedItems: [Item] = []
 
-    func fetchItems(category: String = "Earring", sale: String = "", brand: String = "", name: String = "") {
+    func fetchItems(category: String = "", sale: String = "", brand: String = "", name: String = "") {
         var components = URLComponents(string: Endpoint.baseURL + Endpoint.Path.getItems)!
         
+        var isFirstQueryParameter = true
+        
         if !category.isEmpty {
-            components.queryItems?.append(URLQueryItem(name: "category", value: category))
+            components.queryItems = [URLQueryItem(name: "category", value: category)]
+            isFirstQueryParameter = false
         }
         if !sale.isEmpty {
-            components.queryItems?.append(URLQueryItem(name: "sale", value: sale))
+            if isFirstQueryParameter {
+                components.queryItems = [URLQueryItem(name: "sale", value: sale)]
+                isFirstQueryParameter = false
+            } else {
+                components.queryItems?.append(URLQueryItem(name: "sale", value: sale))
+            }
         }
         if !brand.isEmpty {
-            components.queryItems?.append(URLQueryItem(name: "brand", value: brand))
+            if isFirstQueryParameter {
+                components.queryItems = [URLQueryItem(name: "brand", value: brand)]
+                isFirstQueryParameter = false
+            } else {
+                components.queryItems?.append(URLQueryItem(name: "brand", value: brand))
+            }
         }
         if !name.isEmpty {
-            components.queryItems?.append(URLQueryItem(name: "name", value: name))
+            if isFirstQueryParameter {
+                components.queryItems = [URLQueryItem(name: "name", value: name)]
+                isFirstQueryParameter = false
+            } else {
+                components.queryItems?.append(URLQueryItem(name: "name", value: name))
+            }
         }
 
         guard let url = components.url else {
