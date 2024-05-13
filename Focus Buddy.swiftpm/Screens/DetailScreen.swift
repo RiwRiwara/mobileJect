@@ -7,79 +7,78 @@ struct DetailScreen: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     let item: Item
     @EnvironmentObject var cartItems: CartItems
-    @State private var showAddedToCartPopup = false 
+    @State private var showAddedToCartPopup = false
 
     var body: some View {
         ZStack {
             Color("Bg")
-            ScrollView  {
+                .edgesIgnoringSafeArea(.top)
+            
+            ScrollView {
                 //Product Image
                 AsyncImage(url: URL(string: item.img ?? "")) { phase in
                     switch phase {
                     case .empty:
-                            ProgressView()
+                        ProgressView()
                     case .success(let image):
-                            image
-                                .resizable()
-                                .aspectRatio(1,contentMode: .fit)
-                                .edgesIgnoringSafeArea(.top)
+                        image
+                            .resizable()
+                            .aspectRatio(1,contentMode: .fit)
+                            .edgesIgnoringSafeArea(.top)
                     case .failure:
-                            Image(systemName: "photo")
-                                .resizable()
-                                .aspectRatio(1,contentMode: .fit)
-                                .edgesIgnoringSafeArea(.top)
+                        Image(systemName: "photo")
+                            .resizable()
+                            .aspectRatio(1,contentMode: .fit)
+                            .edgesIgnoringSafeArea(.top)
                     @unknown default:
-                            EmptyView()
-                        }
+                        EmptyView()
                     }
-                
-                DescriptionView(item: item)
-
-
-                // some Spacer
-                
-                
-            }
-            .edgesIgnoringSafeArea(.top)
-            
-            HStack {
-                Text(item.sale ?? "")
-                    .font(.title)
-                    .foregroundColor(.white)
-                Spacer()
-                
-            Button(action: {
-                cartItems.addItem(item) 
-                showAddedToCartPopup = true
-            }) {
-                Text("Add to Cart")
-                    .font(.title3)
-                    .fontWeight(.semibold)
-                    .foregroundColor(Color("Primary"))
-                    .padding()
-                    .padding(.horizontal, 8)
-                    .background(Color.white)
-                    .cornerRadius(10.0)
-            }
-               .alert(isPresented: $showAddedToCartPopup) {
-                    Alert(title: Text("Item Added to Cart"),
-                          message: Text("\nThis items has been added to your cart."),
-                          dismissButton: .default(Text("OK")))
                 }
                 
+                DescriptionView(item: item)
+                // Spacer() if needed
             }
-            .padding()
-            .padding(.horizontal)
-            .background(Color("Primary"))
-            .cornerRadius(60.0, corners: .topLeft)
-            .frame(maxHeight: .infinity, alignment: .bottom)
-            .edgesIgnoringSafeArea(.bottom)
+            .padding(.top, 5)
+            
+            VStack {
+                Spacer()
+                
+                HStack {
+                    Text(item.sale ?? "")
+                        .font(.title)
+                        .foregroundColor(.white)
+                    Spacer()
+                    
+                    Button(action: {
+                        cartItems.addItem(item)
+                        showAddedToCartPopup = true
+                    }) {
+                        Text("Add to Cart")
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .foregroundColor(Color("Primary"))
+                            .padding()
+                            .padding(.horizontal, 8)
+                            .background(Color.white)
+                            .cornerRadius(10.0)
+                    }
+                    .alert(isPresented: $showAddedToCartPopup) {
+                        Alert(title: Text("Item Added to Cart"),
+                              message: Text("\nThis item has been added to your cart."),
+                              dismissButton: .default(Text("OK")))
+                    }
+                }
+                .padding()
+                .padding(.horizontal)
+                .background(Color("Primary"))
+                .cornerRadius(60.0, corners: .topLeft)
+            }
         }
-        .padding(.top, 5)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: BackButton(action: {presentationMode.wrappedValue.dismiss()}), trailing: Image("threeDot"))
     }
 }
+
 
 
 struct RoundedCorner: Shape {
