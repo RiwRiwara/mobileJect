@@ -50,6 +50,7 @@ struct DetailScreen: View {
                 
             Button(action: {
                 cartItems.addItem(item) 
+                showAddedToCartPopup = true
             }) {
                 Text("Add to Cart")
                     .font(.title3)

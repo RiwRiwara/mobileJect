@@ -3,7 +3,7 @@ import SwiftUI
 struct CartScreen: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var cartItems: CartItems 
-    
+    let maxNameLength = 30
     var body: some View {
         NavigationView {
             VStack {
@@ -11,7 +11,7 @@ struct CartScreen: View {
                     ForEach(cartItems.items, id: \.self) { item in
                       VStack(alignment: .leading, spacing: 8) {
                             Text(item.name.prefix(maxNameLength))
-                                .font(.title)
+                                .font(.body)
                                 .lineLimit(1) // Ensure only one line is displayed
                                 .truncationMode(.tail) // Add an ellipsis (...) if the name exceeds the limit
                             
