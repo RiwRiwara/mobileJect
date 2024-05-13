@@ -3,30 +3,29 @@ import SwiftUI
 struct CartScreen: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var cartItems: CartItems 
+    
     var body: some View {
         NavigationView {
             VStack {
-        NavigationView {
-
-            List {
-                ForEach(cartItems.itemss, id: \.self) { item in
-                    Text(item.name)
+                List {
+                    ForEach(cartItems.items) { item in
+                        // Display item details here
+                        Text(item.name)
+                        // You can add more Text views to display other details like price, quantity, etc.
+                    }
+                    .onDelete(perform: deleteItem) // Enable swipe to delete
                 }
-                .onDelete(perform: deleteItem)
-            }
-            .navigationBarTitle("Cart")
-            .nav
+                .listStyle(InsetGroupedListStyle())
                 
                 Spacer()
                 
-                // Total price or checkout button
                 Button(action: {
                     // Action when checkout button is tapped
                 }) {
                     Text("Checkout")
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .background(ColorConfig.Primary.base)
+                        .background(Color.blue) // Use your desired color here
                         .foregroundColor(Color.white)
                         .cornerRadius(8)
                         .padding(.horizontal, 20)
@@ -34,18 +33,18 @@ struct CartScreen: View {
                 .padding(.bottom, 20)
             }
             .navigationBarTitle("Cart")
-            .navigationBarBackButtonHidden(true) // Hide the default back button
+            .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading:
                 Button(action: {
-                    self.presentationMode.wrappedValue.dismiss() // Dismiss the view when "Go Back" button is tapped
+                    self.presentationMode.wrappedValue.dismiss()
                 }) {
-                    Image(systemName: "arrow.left") // You can customize the button appearance here
+                    Image(systemName: "arrow.left")
                 }
             )
         }
-    }// body
-
-        func deleteItem(at offsets: IndexSet) {
+    }
+    
+    func deleteItem(at offsets: IndexSet) {
         cartItems.items.remove(atOffsets: offsets)
     }
 }
