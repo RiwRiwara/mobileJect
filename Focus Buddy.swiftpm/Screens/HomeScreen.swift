@@ -16,14 +16,6 @@ struct HomeScreen: View {
                 .onAppear {
                     fetchData()
                 }
-                .onReceive(fetchPublisher) { result in
-                    switch result {
-                    case .success(let data):
-                        isFetchingData = false
-                    case .failure(let error):
-                        errorMessage = error.localizedDescription
-                    }
-                }
         } else if !errorMessage.isEmpty {
             Text(errorMessage)
                 .padding()
