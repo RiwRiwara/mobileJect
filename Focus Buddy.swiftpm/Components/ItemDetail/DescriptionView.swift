@@ -37,86 +37,38 @@ struct DescriptionView: View {
                     .padding(.horizontal)
 
                 HStack {
-                    AsyncImage(url: URL(string: item.link1img ?? "")) { phase in
-                        switch phase {
-                        case .empty:
-                            ProgressView()
-                        case .success(let image):
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(maxWidth: .infinity)
-                        case .failure:
-                            Image(systemName: "photo")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(maxWidth: .infinity)
-                        @unknown default:
-                            EmptyView()
+                    ForEach(0..<4) { index in
+                        Button(action: {
+                            // Open the URL in browser when clicked
+                            if let urlString = destinationURL(for: index) {
+                                if let url = URL(string: urlString) {
+                                    UIApplication.shared.open(url)
+                                }
+                            }
+                        }) {
+                            AsyncImage(url: URL(string: imageURL(for: index) ?? "")) { phase in
+                                switch phase {
+                                case .empty:
+                                    ProgressView()
+                                case .success(let image):
+                                    image
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(maxWidth: .infinity)
+                                case .failure:
+                                    Image(systemName: "photo")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(maxWidth: .infinity)
+                                @unknown default:
+                                    EmptyView()
+                                }
+                            }
                         }
                     }
-                    AsyncImage(url: URL(string: item.link2img ?? "")) { phase in
-                        switch phase {
-                        case .empty:
-                            ProgressView()
-                        case .success(let image):
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(maxWidth: .infinity)
-                        case .failure:
-                            Image(systemName: "photo")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(maxWidth: .infinity)
-                        @unknown default:
-                            EmptyView()
-                        }
-                    }
-                }//HStack
-                HStack {
-                    AsyncImage(url: URL(string: item.link3img ?? "")) { phase in
-                        switch phase {
-                        case .empty:
-                            ProgressView()
-                        case .success(let image):
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(maxWidth: .infinity)
-                        case .failure:
-                            Image(systemName: "photo")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(maxWidth: .infinity)
-                        @unknown default:
-                            EmptyView()
-                        }
-                    }
-                    AsyncImage(url: URL(string: item.link4img ?? "")) { phase in
-                        switch phase {
-                        case .empty:
-                            ProgressView()
-                        case .success(let image):
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(maxWidth: .infinity)
-                        case .failure:
-                            Image(systemName: "photo")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(maxWidth: .infinity)
-                        @unknown default:
-                            EmptyView()
-                        }
-
-                    }
-
                 }//HStack
 
             }//VStack
-
 
             
         }
@@ -126,5 +78,35 @@ struct DescriptionView: View {
         .background(Color("Bg"))
         .cornerRadius(30, corners: [.topLeft, .topRight])
         .offset(x: 0, y: -30.0)
+    }
+
+func imageURL(for index: Int) -> String? {
+        switch index {
+        case 0:
+            return item.link1img
+        case 1:
+            return item.link2img
+        case 2:
+            return item.link3img
+        case 3:
+            return item.link4img
+        default:
+            return nil
+        }
+    }
+    
+    func destinationURL(for index: Int) -> String? {
+        switch index {
+        case 0:
+            return item.link1
+        case 1:
+            return item.link2
+        case 2:
+            return item.link3
+        case 3:
+            return item.link4
+        default:
+            return nil
+        }
     }
 }

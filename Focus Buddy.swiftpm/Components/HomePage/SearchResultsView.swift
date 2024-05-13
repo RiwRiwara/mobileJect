@@ -8,7 +8,13 @@ struct SearchResultsView: View {
     
     var body: some View {
         VStack {
+            Text("Search Results")
+                .font(.title)
+                .fontWeight(.bold)
+                .padding()
+
             if isFetchingData {
+            Spacer()
             Text("Loading...")
                 .padding()
                 .onAppear {
@@ -18,10 +24,15 @@ struct SearchResultsView: View {
                         isFetchingData = false
                     }
             }else {
-                                    ForEach(searchItems.fetchedItems, id: \.self) { item in
-                                        ProductCardViewApi(size: 180, item: item)
-                                    }
-                                    .padding(.leading)
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHStack {
+                        ForEach(searchItems.fetchedItems, id: \.self) { item in
+                            ProductCardViewApi(size: 180, item: item)
+                                .padding(.trailing, 10) 
+                        }
+                    }
+                    .padding(.horizontal)
+                }
             }
         }
         .padding()
