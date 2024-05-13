@@ -13,18 +13,18 @@ struct HomeScreen: View {
     private let categories = ["All", "Bracelet", "Necklace", "Earring", "Glasses"]
 
     var body: some View {
-            if isFetchingData {
-                Text("Loading...")
-                    .padding()
-                    .onAppear {
+        if isFetchingData {
+            Text("Loading...")
+                .padding()
+                .onAppear {
                         CheckApiAvailable()
                         fetchNecklaceItems()
                         fetchEarringItems()
                     }
-            } else if !errorMessage.isEmpty {
-                Text(errorMessage)
-                    .padding()
-            } else {
+        } else if !errorMessage.isEmpty {
+            Text(errorMessage)
+                .padding()
+        } else {
             NavigationView {
                 ZStack {
                     Color(#colorLiteral(red: 0.937254902, green: 0.937254902, blue: 0.937254902, alpha: 1))
@@ -40,8 +40,6 @@ struct HomeScreen: View {
                             
                             SearchAndScanView(search: $search)
 
-
-                            
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack {
                                     ForEach(0 ..< categories.count) { i in
@@ -66,10 +64,6 @@ struct HomeScreen: View {
                                 }
                             }
 
-                            Text("Earring")
-                                .font(.custom("PlayfairDisplay-Bold", size: 24))
-                                .padding(.horizontal)
-
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack (spacing: 0) {
                                     ForEach(EarringItems.fetchedItems, id: \.self) { item in
@@ -78,7 +72,10 @@ struct HomeScreen: View {
                                     .padding(.leading)
                                 }
                             }
-
+                            
+                            Text("Earring")
+                                .font(.custom("PlayfairDisplay-Bold", size: 24))
+                                .padding(.horizontal)
                             
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack (spacing: 0) {
@@ -93,12 +90,19 @@ struct HomeScreen: View {
                                     }
                                     .padding(.leading)
                                 }
-                            }
-                            .padding(.bottom)
+                            }.padding(.bottom)
                             
-
+                            Text("Necklace")
+                                .font(.custom("PlayfairDisplay-Bold", size: 24))
+                                .padding(.horizontal)
                             
-
+                            ScrollView (.horizontal, showsIndicators: false) {
+                                HStack (spacing: 0) {
+                                    ForEach(0 ..< 4) { i in
+                                        ProductCardView(image: Image("chair_\(4-i)"), size: 180)
+                                    }
+                                    .padding(.leading)
+                                }
                             }
                             
                         }
@@ -106,12 +110,11 @@ struct HomeScreen: View {
                     
                     VStack {
                         Spacer()
-                        // BottomNavBarView()
                     }
-                }
-            }
+                } // ZStack
+            } // NavigationView
         }
-    }
+    } // body
     
     func CheckApiAvailable() {
         guard let url = URL(string: Endpoint.baseURL + Endpoint.Path.testApi) else {
