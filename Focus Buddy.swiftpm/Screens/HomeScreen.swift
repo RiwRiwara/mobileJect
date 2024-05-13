@@ -58,21 +58,27 @@ struct HomeScreen: View {
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack (spacing: 0) {
                                     ForEach(NecklaceItems.fetchedItems, id: \.self) { item in
-                                        ProductCardViewApi(imageURL: item.img, size: 180)
+                                        ProductCardViewApi(size: 180, item: item)
                                     }
                                     .padding(.leading)
                                 }
                             }
 
+                            
+                            Text("Earring")
+                                .font(.custom("PlayfairDisplay-Bold", size: 24))
+                                .padding(.horizontal)
+
                             ScrollView (.horizontal, showsIndicators: false) {
                                 HStack (spacing: 0) {
                                     ForEach(EarringItems.fetchedItems, id: \.self) { item in
-                                        ProductCardViewApi(imageURL: item.img, size: 180)
+                                        ProductCardViewApi(size: 180, item: item)
                                     }
                                     .padding(.leading)
                                 }
                             }
                             
+                            // Old code
                             Text("Earring")
                                 .font(.custom("PlayfairDisplay-Bold", size: 24))
                                 .padding(.horizontal)
