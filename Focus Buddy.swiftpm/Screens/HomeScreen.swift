@@ -110,27 +110,6 @@ struct HomeScreen: View {
                             }// ScrollView
 
                             
-                            // Old code
-                            Text("    Earring")
-                                .font(.title3)
-                                .fontWeight(.bold)
-                            
-                            ScrollView (.horizontal, showsIndicators: false) {
-                                HStack (spacing: 0) {
-                                    ForEach(0 ..< 4) { i in
-                                        NavigationLink(
-                                            destination: DetailScreen(),
-                                            label: {
-                                                ProductCardView(image: Image("chair_\(i+1)"), size: 210)
-                                            })
-                                            .navigationBarHidden(true)
-                                            .foregroundColor(.black)
-                                    }
-                                    .padding(.leading)
-                                }
-                            }.padding(.bottom)
-                            
-
                             
                         }
                     }.padding(.top, 20)
