@@ -11,4 +11,10 @@ struct Item: Codable, Hashable {
     let link3: String
     let link4: String
     let category: String
+    let link1img: String
+    let link2img: String
+    let link3img: String
+    let link4img: String
+    let description: String
+    let views: String
 }
