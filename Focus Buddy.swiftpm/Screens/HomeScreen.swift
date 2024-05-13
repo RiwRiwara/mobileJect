@@ -17,15 +17,7 @@ struct HomeScreen: View {
 
     var body: some View {
         if isFetchingData {
-        GeometryReader { geometry in
             Image("Loading")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: geometry.size.width * 0.5)
-                .padding()
-                .rotationEffect(Angle(degrees: 360))
-                .animation(Animation.linear(duration: 1.0).repeatForever(autoreverses: false))
-        }
             Text("Loading...")
                 .padding()
                 .foregroundColor(ColorConfig.Primary.base)

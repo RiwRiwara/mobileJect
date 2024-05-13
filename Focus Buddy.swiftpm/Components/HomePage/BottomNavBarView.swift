@@ -5,7 +5,7 @@ struct BottomNavBarView: View {
         HStack {
             BottomNavBarItem(image: Image(systemName: "house.fill"), action: {})
             
-            NavigationLink(destination: CartScreen()) {
+        NavigationLink(destination: CartScreen()) {
                 BottomNavBarItem(image: Image(systemName: "cart.fill"), action: {})
             }
         }
