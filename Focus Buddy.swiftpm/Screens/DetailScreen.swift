@@ -31,8 +31,8 @@ struct DetailScreen: View {
                 
                 DescriptionView(item: item)
 
+
                 // some Spacer
-                Spacer()
                 
                 
             }

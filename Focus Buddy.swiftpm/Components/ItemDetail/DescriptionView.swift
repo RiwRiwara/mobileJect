@@ -12,7 +12,9 @@ struct DescriptionView: View {
             Text("Description")
                 .fontWeight(.medium)
                 .padding(.vertical, 8)
-            Text("...")
+            Text(
+                item.description ?? "No description available"
+            )
                 .lineSpacing(8.0)
                 .opacity(0.6)
 
@@ -27,39 +29,92 @@ struct DescriptionView: View {
                     Text(item.sale)
                         .font(.body)
                         .fontWeight(.bold)
-            // //Info
-            // HStack (alignment: .top) {
-            //     VStack (alignment: .leading) {
-            //         Text("Size")
-            //             .font(.system(size: 16))
-            //             .fontWeight(.semibold)
-            //         Text("Height: 120 cm")
-            //             .opacity(0.6)
-            //         Text("Wide: 80 cm")
-            //             .opacity(0.6)
-            //         Text("Diameter: 72 cm")
-            //             .opacity(0.6)
-            //     }
-                
-            //     .frame(maxWidth: .infinity, alignment: .leading)
-                
-            //     Spacer()
-                
-            //     VStack (alignment: .leading) {
-            //         Text("Treatment")
-            //             .font(.system(size: 16))
-            //             .fontWeight(.semibold)
-            //         Text("Jati Wood, Canvas, \nAmazing Love")
-            //             .opacity(0.6)
-            //     }
-            //     .frame(maxWidth: .infinity, alignment: .leading)
-            // }
-            // .padding(.vertical)
+     
+                HStack {
+                    AsyncImage(url: URL(string: item.link1img ?? "")) { phase in
+                        switch phase {
+                        case .empty:
+                            ProgressView()
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 100, height: 100)
+                        case .failure:
+                            Image(systemName: "photo")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 100, height: 100)
+                        @unknown default:
+                            EmptyView()
+                        }
+                    }
+                    AsyncImage(url: URL(string: item.link2img ?? "")) { phase in
+                        switch phase {
+                        case .empty:
+                            ProgressView()
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 100, height: 100)
+                        case .failure:
+                            Image(systemName: "photo")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 100, height: 100)
+                        @unknown default:
+                            EmptyView()
+                        }
+                    }
+                }//HStack
+                HStack {
+                    AsyncImage(url: URL(string: item.link3img ?? "")) { phase in
+                        switch phase {
+                        case .empty:
+                            ProgressView()
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 100, height: 100)
+                        case .failure:
+                            Image(systemName: "photo")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 100, height: 100)
+                        @unknown default:
+                            EmptyView()
+                        }
+                    }
+                    AsyncImage(url: URL(string: item.link4img ?? "")) { phase in
+                        switch phase {
+                        case .empty:
+                            ProgressView()
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 100, height: 100)
+                        case .failure:
+                            Image(systemName: "photo")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 100, height: 100)
+                        @unknown default:
+                            EmptyView()
+                        }
+
+                    }
+
+                }//HStack
+
+
             
         }
         .padding()
         .padding(.top)
-        .padding(.bottom, 30)
+        .padding(.bottom, 50)
         .background(Color("Bg"))
         .cornerRadius(30, corners: [.topLeft, .topRight])
         .offset(x: 0, y: -30.0)
