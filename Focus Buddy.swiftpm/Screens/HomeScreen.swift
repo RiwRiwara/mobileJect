@@ -80,6 +80,7 @@ struct HomeScreen: View {
                             
                         }
                     }.padding(.top, 20)
+                    .padding(.bottom, 60)
                     
                     VStack {
                         Spacer()
