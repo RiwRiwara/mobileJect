@@ -10,12 +10,19 @@ struct HomeScreen: View {
     private let categories = ["All", "Bracelet", "Necklace", "Earring", "Glasses"]
     var body: some View {
         NavigationView {
-            VStack{
-                Text(message)
-                    .padding()
-                    .onAppear {
-                        fetchData()
-                    }
+            VStack {
+                if message.isEmpty {
+                    Text("Loading...")
+                        .padding()
+                        .onAppear {
+                            fetchData()
+                        }
+                } else if message == "Server unavailable" {
+                    Text(message)
+                        .padding()
+                } else {
+                    
+                }
             }
               ZStack {
                 Color(#colorLiteral(red: 0.937254902, green: 0.937254902, blue: 0.937254902, alpha: 1))
@@ -100,13 +107,17 @@ struct HomeScreen: View {
             switch result {
             case .success(let decodedData):
                 DispatchQueue.main.async {
-                    self.message = decodedData.message
+                    // self.message = decodedData.message
                 }
             case .failure(let error):
                 print("Error: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    self.message = "Server unavailable"
+                }
             }
         }
     }
+
 
 }
 
