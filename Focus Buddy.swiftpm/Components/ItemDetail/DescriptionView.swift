@@ -1,3 +1,4 @@
+
 import SwiftUI
 struct DescriptionView: View {
     let item: Item
@@ -8,6 +9,7 @@ struct DescriptionView: View {
             Text(item.name)
                 .font(.title)
                 .fontWeight(.bold)
+                .foregroundColor(ColorConfig.Primary.base)
 
             Text("Description")
                 .fontWeight(.medium)
@@ -26,14 +28,14 @@ struct DescriptionView: View {
                     .foregroundColor(.white)
                     .cornerRadius(8)
                     Spacer()
-                    Text(item.sale ?? "")
-                        .font(.body)
-                        .fontWeight(.bold)
+                    
      
             VStack(alignment: .leading, spacing: 10) {
                 Text("Suggested Items")
+                    .padding(.top, 10)
+                    .padding(.horizontal, -15)
                     .font(.title)
-                    .fontWeight(.bold)
+                    .fontWeight(.semibold)
                     .padding(.horizontal)
 
                 HStack {
@@ -55,11 +57,15 @@ struct DescriptionView: View {
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(maxWidth: .infinity)
+                                        .cornerRadius(10.0)
+                                        .padding(.bottom, 10)
                                 case .failure:
                                     Image(systemName: "photo")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(maxWidth: .infinity)
+                                        .cornerRadius(10.0)
+                                        .padding(.bottom, 10)
                                 @unknown default:
                                     EmptyView()
                                 }

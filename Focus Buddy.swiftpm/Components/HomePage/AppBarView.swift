@@ -31,6 +31,7 @@ struct AppBarView: View {
                         .resizable()
                         .frame(width: 42, height: 42)
                         .cornerRadius(10.0)
+                        
                 }
             }
             .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {

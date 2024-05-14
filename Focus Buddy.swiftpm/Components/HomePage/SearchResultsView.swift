@@ -12,6 +12,7 @@ struct SearchResultsView: View {
                 .font(.title)
                 .fontWeight(.bold)
                 .padding()
+                
 
             if isFetchingData {
             Spacer()
@@ -35,7 +36,7 @@ struct SearchResultsView: View {
                 }
             }
         }
-        .padding()
+        .padding(.horizontal, 5)
     }
 
     private func fetchSearch() {

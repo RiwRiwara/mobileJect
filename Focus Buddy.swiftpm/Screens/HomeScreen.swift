@@ -140,7 +140,7 @@ struct HomeScreen: View {
                         
                         VStack {
                             Spacer()
-                            //BottomNavBarView().padding()
+                            // BottomNavBarView().padding()
                         }
                     } // ZStack
                 }// ScrollViewReader
