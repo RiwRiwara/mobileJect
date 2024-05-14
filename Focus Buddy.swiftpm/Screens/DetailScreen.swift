@@ -59,7 +59,7 @@ struct DetailScreen: View {
                         .fontWeight(.semibold)
                         .foregroundColor(Color("Primary"))
                         .padding()
-                        .padding(.horizontal, 😎
+                        .padding(.horizontal, 8)
                         .background(Color.white)
                         .cornerRadius(10.0)
                 }
