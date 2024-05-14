@@ -1,4 +1,3 @@
-
 import SwiftUI
 
 
@@ -23,11 +22,13 @@ struct DetailScreen: View {
                             .resizable()
                             .aspectRatio(1, contentMode: .fit)
                             .edgesIgnoringSafeArea(.top)
+                            
                     case .failure:
                         Image(systemName: "photo")
                             .resizable()
                             .aspectRatio(1, contentMode: .fit)
                             .edgesIgnoringSafeArea(.top)
+                            
                     @unknown default:
                         EmptyView()
                     }
@@ -39,7 +40,12 @@ struct DetailScreen: View {
             .edgesIgnoringSafeArea(.top)
 
             HStack {
-                Text(item.sale ?? "")
+                Text("฿ ")
+                    .fontWeight(.semibold)
+                    .font(.title)
+                    .foregroundColor(.white)
+                + Text(item.sale ?? "")
+                    .fontWeight(.semibold)
                     .font(.title)
                     .foregroundColor(.white)
                 Spacer()
@@ -53,7 +59,7 @@ struct DetailScreen: View {
                         .fontWeight(.semibold)
                         .foregroundColor(Color("Primary"))
                         .padding()
-                        .padding(.horizontal, 8)
+                        .padding(.horizontal, 😎
                         .background(Color.white)
                         .cornerRadius(10.0)
                 }
@@ -90,10 +96,3 @@ extension View {
         clipShape( RoundedCorner(radius: radius, corners: corners) )
     }
 }
-
-
-
-
-
-
-

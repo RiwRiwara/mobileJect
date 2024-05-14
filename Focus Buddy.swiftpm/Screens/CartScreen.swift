@@ -9,17 +9,22 @@ struct CartScreen: View {
             VStack {
                 List {
                     ForEach(cartItems.items, id: \.self) { item in
-                      VStack(alignment: .leading, spacing: 8) {
+                      VStack(alignment: .leading, spacing: 😎 {
                             Text(item.name.prefix(maxNameLength))
                                 .font(.body)
                                 .lineLimit(1) // Ensure only one line is displayed
                                 .truncationMode(.tail) // Add an ellipsis (...) if the name exceeds the limit
-                            
+                            Text("฿ ")
+                              .foregroundColor(.secondary) + 
                             Text(item.sale ?? "")
                                 .foregroundColor(.secondary)
                             Text(item.brand ?? "")
-                                .font(.body)
-                                .foregroundColor(.primary)
+                              .font(.caption)
+                              .fontWeight(.medium)
+                              .padding(EdgeInsets(top: 2, leading: 6, bottom: 2, trailing: 6))
+                              .background(ColorConfig.Primary.base)
+                              .foregroundColor(.white)
+                              .cornerRadius(😎
                         }
                     }
                     .onDelete(perform: deleteItem) // Enable swipe to delete
@@ -32,14 +37,16 @@ struct CartScreen: View {
                     // Action when checkout button is tapped
                 }) {
                     Text("Checkout")
+                        .font(.title3)
+                        .fontWeight(.semibold)
                         .padding()
                         .frame(maxWidth: .infinity)
                         .background(ColorConfig.Primary.base) 
                         .foregroundColor(Color.white)
-                        .cornerRadius(8)
+                        .cornerRadius(😎
                         .padding(.horizontal, 20)
                 }
-                .padding(.bottom, 20)
+                .padding(.vertical)
             }
             .navigationBarTitle("Cart")
             .navigationBarBackButtonHidden(true)
