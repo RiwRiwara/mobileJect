@@ -23,10 +23,7 @@ struct SearchResultsView: View {
                     .onReceive(searchItems.$fetchedItems) { _ in
                         isFetchingData = false
                     }
-                    .onChanged(of: search) { _ in
-                        isFetchingData = true
-                        fetchSearch()
-                    }
+                    
             }else {
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack {
