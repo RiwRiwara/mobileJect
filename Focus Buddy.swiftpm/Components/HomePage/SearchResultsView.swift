@@ -23,7 +23,7 @@ struct SearchResultsView: View {
                     .onReceive(searchItems.$fetchedItems) { _ in
                         isFetchingData = false
                     }
-                    .onChange(of: search) { _ in
+                    .onChanged(of: search) { _ in
                         isFetchingData = true
                         fetchSearch()
                     }
