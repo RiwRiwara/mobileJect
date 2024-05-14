@@ -9,7 +9,7 @@ struct CartScreen: View {
             VStack {
                 List {
                     ForEach(cartItems.items, id: \.self) { item in
-                      VStack(alignment: .leading, spacing: 😎 {
+                      VStack(alignment: .leading, spacing: 8) {
                             Text(item.name.prefix(maxNameLength))
                                 .font(.body)
                                 .lineLimit(1) // Ensure only one line is displayed
@@ -24,7 +24,7 @@ struct CartScreen: View {
                               .padding(EdgeInsets(top: 2, leading: 6, bottom: 2, trailing: 6))
                               .background(ColorConfig.Primary.base)
                               .foregroundColor(.white)
-                              .cornerRadius(😎
+                              .cornerRadius(8)
                         }
                     }
                     .onDelete(perform: deleteItem) // Enable swipe to delete
@@ -43,7 +43,7 @@ struct CartScreen: View {
                         .frame(maxWidth: .infinity)
                         .background(ColorConfig.Primary.base) 
                         .foregroundColor(Color.white)
-                        .cornerRadius(😎
+                        .cornerRadius(8)
                         .padding(.horizontal, 20)
                 }
                 .padding(.vertical)
