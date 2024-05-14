@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct HomeScreen: View {
+struct HomeScreenOld: View {
     @State private var search: String = ""
     @State private var selectedIndex: Int = 1
     @State private var isFetchingData = true
@@ -13,7 +13,7 @@ struct HomeScreen: View {
 
 
 
-    private let categories = ["All", "Bracelets", "Necklaces", "Earrings", "Glasses"]
+    private let categories = ["All", "Bracelet", "Necklace", "Earring", "Glasses"]
 
     var body: some View {
         if isFetchingData {
@@ -71,8 +71,7 @@ struct HomeScreen: View {
                                     
 
 
-                                Text("    Necklaces")
-                                    .padding(.bottom, -10)
+                                Text("    Necklace")
                                     .font(.title3)
                                     .fontWeight(.bold)
                                     .id("topicNecklace")
@@ -87,8 +86,7 @@ struct HomeScreen: View {
                                     }
                                 } // ScrollView
                                 
-                                Text("    Earrings")
-                                    .padding(.bottom, 5)
+                                Text("    Earring")
                                     .font(.title3)
                                     .fontWeight(.bold)
                                     .id("topicEarring")
@@ -102,9 +100,7 @@ struct HomeScreen: View {
                                     }
                                 }// ScrollView
                                 
-                                Text("    Bracelets")
-                                    .padding(.top, 10)
-                                    .padding(.bottom, -25)
+                                Text("    Bracelet")
                                     .font(.title3)
                                     .fontWeight(.bold)
                                     .id("topicBracelet")
@@ -119,7 +115,6 @@ struct HomeScreen: View {
                                 }// ScrollView
                                 
                                 Text("    Glasses")
-                                    .padding(.bottom,5)
                                     .font(.title3)
                                     .fontWeight(.bold)
                                     .id("topicGlasses")
@@ -140,7 +135,7 @@ struct HomeScreen: View {
                         
                         VStack {
                             Spacer()
-                            //BottomNavBarView().padding()
+                            BottomNavBarView().padding()
                         }
                     } // ZStack
                 }// ScrollViewReader
@@ -187,4 +182,9 @@ struct HomeScreen: View {
         GlassesItems.fetchItems(category: "Glasses")
     }
 
+
+    
+
+
 }
+
